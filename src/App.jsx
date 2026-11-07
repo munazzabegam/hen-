@@ -1,14 +1,21 @@
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import Collections from "./components/Collections";
+import Gallery from "./components/Gallery";
+import FeaturedDesigns from "./components/FeaturedDesigns";
+import About from "./components/About";
 import "./App.css";
 
 function App() {
   return (
     <>
       <Navbar />
+
+      <main>
       <Hero />
-      <Collections />
+      <FeaturedDesigns />
+      <Gallery />
+      <About />
+      </main>
     </>
   );
 }
