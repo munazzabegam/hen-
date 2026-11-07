@@ -1,0 +1,71 @@
+.artistic-style {
+    padding: 100px 7%;
+    background: #eee2d3;
+  }
+  
+  .style-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  
+  .style-header h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 5vw, 55px);
+    font-weight: 400;
+    margin: 20px 0;
+    color: #4b2e1e;
+  }
+  
+  .style-header > p:last-child {
+    color: #80644d;
+    font-size: 14px;
+  }
+  
+  .style-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  
+  .style-card {
+    padding: 40px 30px;
+    border: 1px solid #d8bfa5;
+    background: rgba(252, 247, 240, 0.55);
+    transition: transform 0.3s ease;
+  }
+  
+  .style-card:hover {
+    transform: translateY(-6px);
+  }
+  
+  .style-number {
+    font-family: "Playfair Display", serif;
+    font-size: 16px;
+    font-style: italic;
+    color: #9b704f;
+  }
+  
+  .style-card h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 25px;
+    font-weight: 400;
+    margin: 25px 0 15px;
+    color: #4b2e1e;
+  }
+  
+  .style-card p {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #80644d;
+  }
+  
+  @media (max-width: 768px) {
+    .style-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .style-card {
+      padding: 30px;
+    }
+  }
+  

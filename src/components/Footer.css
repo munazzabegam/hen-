@@ -1,0 +1,50 @@
+.footer {
+    padding: 60px 7% 25px;
+    text-align: center;
+    background: #f8f0e6;
+    border-top: 1px solid #eadbc9;
+  }
+  
+  .footer-brand {
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    font-style: italic;
+    color: #4b2e1e;
+  }
+  
+  .footer-message {
+    font-size: 13px;
+    color: #80644d;
+    margin: 15px 0 30px;
+  }
+  
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-links a {
+    font-size: 13px;
+    color: #603b23;
+  }
+  
+  .footer-links a:hover {
+    color: #a16a40;
+  }
+  
+  .footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #eadbc9;
+    font-size: 11px;
+    color: #9b704f;
+  }
+  
+  @media (max-width: 500px) {
+    .footer-links {
+      gap: 18px;
+    }
+  }
+  

@@ -1,28 +1,35 @@
+import { useState } from "react";
 import "./Navbar.css";
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="navbar">
-      <a href="/" className="brand">
-        <span className="brand-name">Munna's Henna</span>
-        <span className="brand-subtitle">MEHENDI ARTIST</span>
+      <a href="#home" className="navbar-logo" onClick={closeMenu}>
+        Munna's <span>Henna</span>
       </a>
 
-      <div className="nav-links">
-        <a href="#home">Home</a>
-        <a href="#collections">Gallery</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-      <a
-        href="https://instagram.com/"
-        target="_blank"
-        rel="noreferrer"
-        className="instagram-link"
+      <button
+        className={`menu-toggle ${menuOpen ? "active" : ""}`}
+        onClick={() => setMenuOpen(!menuOpen)}
+        aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
       >
-        Instagram ↗
-      </a>
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div className={`navbar-links ${menuOpen ? "open" : ""}`}>
+        <a href="#home" onClick={closeMenu}>Home</a>
+        <a href="#featured" onClick={closeMenu}>Designs</a>
+        <a href="#gallery" onClick={closeMenu}>Gallery</a>
+        <a href="#about" onClick={closeMenu}>About</a>
+        <a href="#contact" onClick={closeMenu}>Contact</a>
+      </div>
     </nav>
   );
 }

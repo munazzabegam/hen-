@@ -10,3 +10,15 @@
 body {
   min-width: 320px;
 }
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: #faf7f2;
+}
+

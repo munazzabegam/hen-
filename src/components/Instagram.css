@@ -1,0 +1,45 @@
+.instagram-section {
+    padding: 100px 7%;
+    text-align: center;
+    background: #f8f0e6;
+  }
+  
+  .instagram-section h2 {
+    font-family: "Playfair Display", serif;
+    font-size: clamp(36px, 5vw, 55px);
+    font-weight: 400;
+    color: #4b2e1e;
+    margin: 20px 0;
+  }
+  
+  .instagram-description {
+    max-width: 450px;
+    margin: 0 auto;
+    font-size: 14px;
+    line-height: 1.9;
+    color: #80644d;
+  }
+  
+  .instagram-button {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 15px 32px;
+    background: #603b23;
+    color: #fff;
+    border-radius: 40px;
+    font-size: 14px;
+    transition: background 0.3s;
+  }
+  
+  .instagram-button:hover {
+    background: #8a5a36;
+  }
+  
+  .instagram-handle {
+    display: block;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #9b704f;
+  }
+  

@@ -1,60 +1,108 @@
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 22px 7%;
-    background: #f8f0e6;
-    border-bottom: 1px solid #eadbc9;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  padding: 20px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(250, 247, 242, 0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(90, 60, 40, 0.08);
+}
+
+.navbar-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 26px;
+  color: #3b2418;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar-logo span {
+  color: #a77b55;
+  font-style: italic;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #5a4536;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.navbar-links a:hover {
+  color: #a77b55;
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Mobile Navbar */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 18px 6%;
   }
-  
-  .brand {
+
+  .menu-toggle {
     display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: #4b2e1e;
+    gap: 5px;
+    z-index: 1001;
   }
-  
-  .brand-name {
-    font-family: "Playfair Display", serif;
-    font-size: 28px;
-    font-style: italic;
+
+  .menu-toggle span {
+    width: 25px;
+    height: 2px;
+    background: #3b2418;
+    transition: 0.3s;
   }
-  
-  .brand-subtitle {
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-align: center;
-    margin-top: 5px;
+
+  .menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
   }
-  
-  .nav-links {
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 25px 6%;
+    background: #faf7f2;
     display: flex;
-    gap: 35px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    border-bottom: 1px solid #eadfd4;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: 0.3s ease;
   }
-  
-  .nav-links a,
-  .instagram-link {
-    text-decoration: none;
-    color: #4b2e1e;
-    font-size: 15px;
-    transition: color 0.3s;
+
+  .navbar-links.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
-  
-  .nav-links a:hover,
-  .instagram-link:hover {
-    color: #a16a40;
-  }
-  
-  @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
-      gap: 20px;
-    }
-  
-    .nav-links {
-      gap: 18px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-  }
-  
+}
