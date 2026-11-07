@@ -1,61 +1,132 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Gallery.css";
 
 const designs = [
-  { image: "/images/design-1.jpg", alt: "Floral henna design" },
-  { image: "/images/design-2.jpg", alt: "Elegant hand mehendi" },
-  { image: "/images/design-3.jpg", alt: "Intricate henna artwork" },
-  { image: "/images/design-4.jpg", alt: "Traditional hand design" },
-  { image: "/images/design-5.jpg", alt: "Minimal henna design" },
-  { image: "/images/design-6.jpg", alt: "Detailed henna patterns" },
+  "/images/design-1.jpg",
+  "/images/design-2.jpg",
+  "/images/design-3.jpg",
+  "/images/design-4.jpg",
+  "/images/design-5.jpg",
+  "/images/design-6.jpg",
 ];
 
 function Gallery() {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+
+  const closeLightbox = () => setSelectedIndex(null);
+
+  const nextImage = () => {
+    setSelectedIndex((prev) => (prev + 1) % designs.length);
+  };
+
+  const prevImage = () => {
+    setSelectedIndex(
+      (prev) => (prev - 1 + designs.length) % designs.length
+    );
+  };
+
+  useEffect(() => {
+    if (selectedIndex === null) return;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") closeLightbox();
+      if (event.key === "ArrowRight") nextImage();
+      if (event.key === "ArrowLeft") prevImage();
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedIndex]);
 
   return (
     <section className="gallery" id="gallery">
+      {/* Gallery Heading */}
       <div className="gallery-header">
-        <p className="section-tag">MY CREATIVE COLLECTION</p>
-        <h2>My Henna Gallery</h2>
-        <p>Every design is a little piece of art.</p>
+        <span className="section-label">THE ART COLLECTION</span>
+
+        <h2>
+          My Henna <span>Gallery</span>
+        </h2>
+
+        <p>A glimpse into my favourite henna creations.</p>
       </div>
 
+      {/* Gallery Grid */}
       <div className="gallery-grid">
-        {designs.map((design, index) => (
+        {designs.map((image, index) => (
           <button
             className="gallery-item"
-            key={design.image}
-            onClick={() => setSelectedImage(design)}
-            aria-label={`View ${design.alt}`}
+            key={image}
+            onClick={() => setSelectedIndex(index)}
+            aria-label={`View henna design ${index + 1}`}
           >
-            <img src={design.image} alt={design.alt} />
-            <span className="gallery-item-number">
-              {String(index + 1).padStart(2, "0")}
-            </span>
+            <img
+              src={image}
+              alt={`Henna design ${index + 1}`}
+              loading="lazy"
+            />
+
+            <div className="gallery-overlay">
+              <span>
+                View Design <span className="gallery-arrow">↗</span>
+              </span>
+            </div>
           </button>
         ))}
       </div>
 
-      {selectedImage && (
-        <div
-          className="lightbox"
-          onClick={() => setSelectedImage(null)}
-        >
+      {/* Lightbox */}
+      {selectedIndex !== null && (
+        <div className="lightbox" onClick={closeLightbox}>
           <button
             className="lightbox-close"
-            onClick={() => setSelectedImage(null)}
-            aria-label="Close image"
+            onClick={closeLightbox}
+            aria-label="Close gallery"
           >
-            &times;
+            ×
           </button>
 
-          <img
-            src={selectedImage.image}
-            alt={selectedImage.alt}
+          <button
+            className="lightbox-prev"
+            onClick={(event) => {
+              event.stopPropagation();
+              prevImage();
+            }}
+            aria-label="Previous design"
+          >
+            ‹
+          </button>
+
+          <div
+            className="lightbox-content"
             onClick={(event) => event.stopPropagation()}
-          />
+          >
+            <img
+              src={designs[selectedIndex]}
+              alt={`Henna design ${selectedIndex + 1}`}
+            />
+
+            <div className="lightbox-counter">
+              {String(selectedIndex + 1).padStart(2, "0")} /{" "}
+              {String(designs.length).padStart(2, "0")}
+            </div>
+          </div>
+
+          <button
+            className="lightbox-next"
+            onClick={(event) => {
+              event.stopPropagation();
+              nextImage();
+            }}
+            aria-label="Next design"
+          >
+            ›
+          </button>
         </div>
       )}
     </section>
