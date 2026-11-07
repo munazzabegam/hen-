@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ScrollReveal from "./ScrollReveal";
 import "./Gallery.css";
 
 const designs = [
@@ -46,6 +47,7 @@ function Gallery() {
   return (
     <section className="gallery" id="gallery">
       {/* Gallery Heading */}
+      <ScrollReveal>
       <div className="gallery-header">
         <span className="section-label">THE ART COLLECTION</span>
 
@@ -59,6 +61,7 @@ function Gallery() {
       {/* Gallery Grid */}
       <div className="gallery-grid">
         {designs.map((image, index) => (
+          <ScrollReveal delay={index * 0.08}>
           <button
             className="gallery-item"
             key={image}
@@ -77,8 +80,10 @@ function Gallery() {
               </span>
             </div>
           </button>
+          </ScrollReveal>
         ))}
       </div>
+      </ScrollReveal>
 
       {/* Lightbox */}
       {selectedIndex !== null && (
