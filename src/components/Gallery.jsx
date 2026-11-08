@@ -1,6 +1,10 @@
-import { useState, useEffect } from "react";
-import ScrollReveal from "./ScrollReveal";
+import { useState, useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import "./Gallery.css";
+
+gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const designs = [
   "/images/design-1.jpg",
@@ -13,6 +17,7 @@ const designs = [
 
 function Gallery() {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const galleryRef = useRef(null);
 
   const closeLightbox = () => setSelectedIndex(null);
 
@@ -26,6 +31,39 @@ function Gallery() {
     );
   };
 
+  // Gallery Scroll Animation
+  useGSAP(
+    () => {
+      gsap.from(".gallery-header", {
+        opacity: 0,
+        y: 35,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".gallery",
+          start: "top 80%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      gsap.from(".gallery-item", {
+        opacity: 0,
+        y: 60,
+        scale: 0.96,
+        duration: 1,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".gallery-grid",
+          start: "top 85%",
+          toggleActions: "play none none none",
+        },
+      });
+    },
+    { scope: galleryRef }
+  );
+
+  // Lightbox Keyboard Controls
   useEffect(() => {
     if (selectedIndex === null) return;
 
@@ -45,9 +83,8 @@ function Gallery() {
   }, [selectedIndex]);
 
   return (
-    <section className="gallery" id="gallery">
+    <section className="gallery" id="gallery" ref={galleryRef}>
       {/* Gallery Heading */}
-      <ScrollReveal>
       <div className="gallery-header">
         <span className="section-label">THE ART COLLECTION</span>
 
@@ -61,7 +98,6 @@ function Gallery() {
       {/* Gallery Grid */}
       <div className="gallery-grid">
         {designs.map((image, index) => (
-          <ScrollReveal delay={index * 0.08}>
           <button
             className="gallery-item"
             key={image}
@@ -80,10 +116,8 @@ function Gallery() {
               </span>
             </div>
           </button>
-          </ScrollReveal>
         ))}
       </div>
-      </ScrollReveal>
 
       {/* Lightbox */}
       {selectedIndex !== null && (

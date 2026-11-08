@@ -142,3 +142,21 @@
     }
   }
   
+  
+/* GSAP animation optimization */
+.featured-card,
+.featured-header > div,
+.featured-description,
+.featured-footer {
+  will-change: transform, opacity;
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .featured-card,
+  .featured-header > div,
+  .featured-description,
+  .featured-footer {
+    will-change: auto;
+  }
+}
