@@ -8,6 +8,7 @@ import Instagram from "./components/Instagram";
 import Footer from "./components/Footer";
 import "./App.css";
 import Contact from "./components/Contact";
+import ArtistQuote from "./components/ArtistQuote";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <main>
       <Hero />
       <FeaturedDesigns />
+      <ArtistQuote />
       <Gallery />
       <About />
       <ArtisticStyle />
